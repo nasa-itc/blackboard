@@ -35,7 +35,9 @@ namespace Nos3
                 }
             }
         }
+        _ticks_between_shmem_saves = config.get("simulator.hardware-model.ticks-between-shmem-saves", 10);
         _time_bus.reset(new NosEngine::Client::Bus(_hub, connection_string, time_bus_name));
+        _time_bus->add_time_tick_callback(std::bind(&BlackboardHardwareModel::send_periodic_data_to_shmem, this, std::placeholders::_1));
         sim_logger->info("BlackboardHardwareModel::BlackboardHardwareModel:  Now on time bus named %s.", time_bus_name.c_str());
 
         /* Construction complete */
@@ -90,5 +92,12 @@ namespace Nos3
         _command_node->send_reply_message_async(msg, response.size(), response.c_str());
     }
 
+    void BlackboardHardwareModel::send_periodic_data_to_shmem(NosEngine::Common::SimTime time)
+    {
+        if ((time % _ticks_between_shmem_saves) == 0) {
+            const boost::shared_ptr<BlackboardDataPoint> data_point =
+                boost::dynamic_pointer_cast<BlackboardDataPoint>(_blackboard_dp->get_data_point());
+        }
+    }
 
 }

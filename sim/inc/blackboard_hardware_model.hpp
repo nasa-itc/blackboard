@@ -37,6 +37,7 @@ namespace Nos3
         BlackboardHardwareModel(const boost::property_tree::ptree& config);
         ~BlackboardHardwareModel(void);
 
+        void send_periodic_data_to_shmem(NosEngine::Common::SimTime time);
     private:
         /* Private helper methods */
         void command_callback(NosEngine::Common::Message msg); /* Handle backdoor commands and time tick to the simulator */
@@ -47,6 +48,7 @@ namespace Nos3
         SimIDataProvider*                                   _blackboard_dp; /* Only needed if the sim has a data provider */
 
         /* Internal state data */
+        std::uint16_t                                       _ticks_between_shmem_saves;
         std::uint8_t                                        _enabled;
     };
 }
