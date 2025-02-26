@@ -8,6 +8,7 @@
 
 #include <boost/tuple/tuple.hpp>
 #include <boost/property_tree/ptree.hpp>
+#include <boost/interprocess/managed_shared_memory.hpp>
 
 #include <Client/Bus.hpp>
 #include <Uart/Client/Uart.hpp> /* TODO: Change if your protocol bus is different (e.g. SPI, I2C, etc.) */
@@ -29,6 +30,8 @@
 */
 namespace Nos3
 {
+    namespace bip = boost::interprocess;
+
     /* Standard for a hardware model */
     class BlackboardHardwareModel : public SimIHardwareModel
     {
@@ -48,6 +51,11 @@ namespace Nos3
         SimIDataProvider*                                   _blackboard_dp; /* Only needed if the sim has a data provider */
 
         /* Internal state data */
+        bip::mapped_region                                  _shm_region;
+        struct blackboard_data {
+            double svb[3];
+        };
+        blackboard_data*                                    _blackboard_data;
         std::uint16_t                                       _ticks_between_shmem_saves;
         std::uint8_t                                        _enabled;
     };

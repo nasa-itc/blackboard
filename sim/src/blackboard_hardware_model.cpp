@@ -2,6 +2,8 @@
 
 namespace Nos3
 {
+    namespace bip = boost::interprocess;
+
     REGISTER_HARDWARE_MODEL(BlackboardHardwareModel,"BLACKBOARD");
 
     extern ItcLogger::Logger *sim_logger;
@@ -39,6 +41,14 @@ namespace Nos3
         _time_bus.reset(new NosEngine::Client::Bus(_hub, connection_string, time_bus_name));
         _time_bus->add_time_tick_callback(std::bind(&BlackboardHardwareModel::send_periodic_data_to_shmem, this, std::placeholders::_1));
         sim_logger->info("BlackboardHardwareModel::BlackboardHardwareModel:  Now on time bus named %s.", time_bus_name.c_str());
+
+        const std::string shm_name = "Blackboard";
+        const size_t shm_size = sizeof(blackboard_data);
+        bip::shared_memory_object shm(bip::open_or_create, shm_name.c_str(), bip::read_write);
+        shm.truncate(shm_size);
+        bip::mapped_region shm_region(shm, bip::read_write);
+        _shm_region = std::move(shm_region); // don't let this go out of scope/get destroyed
+        _blackboard_data = static_cast<blackboard_data*>(_shm_region.get_address());
 
         /* Construction complete */
         sim_logger->info("BlackboardHardwareModel::BlackboardHardwareModel:  Construction complete.");
@@ -97,7 +107,10 @@ namespace Nos3
         if ((time % _ticks_between_shmem_saves) == 0) {
             const boost::shared_ptr<BlackboardDataPoint> data_point =
                 boost::dynamic_pointer_cast<BlackboardDataPoint>(_blackboard_dp->get_data_point());
-        }
+                _blackboard_data->svb[0] = data_point->get_svb_x();
+                _blackboard_data->svb[1] = data_point->get_svb_y();
+                _blackboard_data->svb[2] = data_point->get_svb_z();
+            }
     }
 
 }
