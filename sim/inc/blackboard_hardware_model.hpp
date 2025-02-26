@@ -54,9 +54,23 @@ namespace Nos3
         bip::mapped_region                                  _shm_region;
         struct blackboard_data {
             double svb[3];
+            double bvb[3];
+            double Hvb[3];
+            double GyroRate[3];
+            int    CSSValid[6];
+            double CSSIllum[6];
+            int    FSSValid;
+            double FSSSunAng[2];
+            int    STValid;
+            double STqn[4];
+            double GPSPosN[3];
+            double GPSVelN[3];
+            double AccelAcc[3];
+            double WhlH[3];
         };
         blackboard_data*                                    _blackboard_data;
         std::uint16_t                                       _ticks_between_shmem_saves;
+        std::uint16_t                                       _ticks_to_wait_at_startup;
         std::uint8_t                                        _enabled;
     };
 }

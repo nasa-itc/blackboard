@@ -38,6 +38,7 @@ namespace Nos3
             }
         }
         _ticks_between_shmem_saves = config.get("simulator.hardware-model.ticks-between-shmem-saves", 10);
+        _ticks_to_wait_at_startup = config.get("simulator.hardware-model.ticks-to-wait-at-startup", 100);
         _time_bus.reset(new NosEngine::Client::Bus(_hub, connection_string, time_bus_name));
         _time_bus->add_time_tick_callback(std::bind(&BlackboardHardwareModel::send_periodic_data_to_shmem, this, std::placeholders::_1));
         sim_logger->info("BlackboardHardwareModel::BlackboardHardwareModel:  Now on time bus named %s.", time_bus_name.c_str());
@@ -104,13 +105,55 @@ namespace Nos3
 
     void BlackboardHardwareModel::send_periodic_data_to_shmem(NosEngine::Common::SimTime time)
     {
-        if ((time % _ticks_between_shmem_saves) == 0) {
+        if ((time < _ticks_to_wait_at_startup) || ((time % _ticks_between_shmem_saves) == 0)) {
+            // mutex here
             const boost::shared_ptr<BlackboardDataPoint> data_point =
-                boost::dynamic_pointer_cast<BlackboardDataPoint>(_blackboard_dp->get_data_point());
-                _blackboard_data->svb[0] = data_point->get_svb_x();
-                _blackboard_data->svb[1] = data_point->get_svb_y();
-                _blackboard_data->svb[2] = data_point->get_svb_z();
-            }
+            boost::dynamic_pointer_cast<BlackboardDataPoint>(_blackboard_dp->get_data_point());
+            _blackboard_data->svb[0]       = data_point->get_svb_x();
+            _blackboard_data->svb[1]       = data_point->get_svb_y();
+            _blackboard_data->svb[2]       = data_point->get_svb_z();
+            _blackboard_data->bvb[0]       = data_point->get_bvb_x();
+            _blackboard_data->bvb[1]       = data_point->get_bvb_y();
+            _blackboard_data->bvb[2]       = data_point->get_bvb_z();
+            _blackboard_data->Hvb[0]       = data_point->get_Hvb_x();
+            _blackboard_data->Hvb[1]       = data_point->get_Hvb_y();
+            _blackboard_data->Hvb[2]       = data_point->get_Hvb_z();
+            _blackboard_data->GyroRate[0]  = data_point->get_GyroRate_x();
+            _blackboard_data->GyroRate[1]  = data_point->get_GyroRate_y();
+            _blackboard_data->GyroRate[2]  = data_point->get_GyroRate_z();
+            _blackboard_data->CSSValid[0]  = data_point->get_CSSValid_0();
+            _blackboard_data->CSSValid[1]  = data_point->get_CSSValid_1();
+            _blackboard_data->CSSValid[2]  = data_point->get_CSSValid_2();
+            _blackboard_data->CSSValid[3]  = data_point->get_CSSValid_3();
+            _blackboard_data->CSSValid[4]  = data_point->get_CSSValid_4();
+            _blackboard_data->CSSValid[5]  = data_point->get_CSSValid_5();
+            _blackboard_data->CSSIllum[0]  = data_point->get_CSSIllum_0();
+            _blackboard_data->CSSIllum[1]  = data_point->get_CSSIllum_1();
+            _blackboard_data->CSSIllum[2]  = data_point->get_CSSIllum_2();
+            _blackboard_data->CSSIllum[3]  = data_point->get_CSSIllum_3();
+            _blackboard_data->CSSIllum[4]  = data_point->get_CSSIllum_4();
+            _blackboard_data->CSSIllum[5]  = data_point->get_CSSIllum_5();
+            _blackboard_data->FSSValid     = data_point->get_FSSValid();
+            _blackboard_data->FSSSunAng[0] = data_point->get_FSSSunAng_alpha();
+            _blackboard_data->FSSSunAng[1] = data_point->get_FSSSunAng_beta();
+            _blackboard_data->STValid      = data_point->get_STValid();
+            _blackboard_data->STqn[0]      = data_point->get_STqn_0();
+            _blackboard_data->STqn[1]      = data_point->get_STqn_1();
+            _blackboard_data->STqn[2]      = data_point->get_STqn_2();
+            _blackboard_data->STqn[3]      = data_point->get_STqn_3();
+            _blackboard_data->GPSPosN[0]   = data_point->get_GPSPosN_x();
+            _blackboard_data->GPSPosN[1]   = data_point->get_GPSPosN_y();
+            _blackboard_data->GPSPosN[2]   = data_point->get_GPSPosN_z();
+            _blackboard_data->GPSVelN[0]   = data_point->get_GPSVelN_x();
+            _blackboard_data->GPSVelN[1]   = data_point->get_GPSVelN_y();
+            _blackboard_data->GPSVelN[2]   = data_point->get_GPSVelN_z();
+            _blackboard_data->AccelAcc[0]  = data_point->get_AccelAcc_x();
+            _blackboard_data->AccelAcc[1]  = data_point->get_AccelAcc_y();
+            _blackboard_data->AccelAcc[2]  = data_point->get_AccelAcc_z();
+            _blackboard_data->WhlH[0]      = data_point->get_WhlH_x();
+            _blackboard_data->WhlH[1]      = data_point->get_WhlH_y();
+            _blackboard_data->WhlH[2]      = data_point->get_WhlH_z();
+        }
     }
 
 }
