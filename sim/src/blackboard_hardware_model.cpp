@@ -43,7 +43,7 @@ namespace Nos3
         _time_bus->add_time_tick_callback(std::bind(&BlackboardHardwareModel::send_periodic_data_to_shmem, this, std::placeholders::_1));
         sim_logger->info("BlackboardHardwareModel::BlackboardHardwareModel:  Now on time bus named %s.", time_bus_name.c_str());
 
-        const std::string shm_name = "Blackboard";
+        const std::string shm_name = config.get("simulator.hardware-model.shared-memory-name", "Blackboard");
         const size_t shm_size = sizeof(BlackboardData);
         bip::shared_memory_object shm(bip::open_or_create, shm_name.c_str(), bip::read_write);
         shm.truncate(shm_size);
