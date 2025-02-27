@@ -53,6 +53,7 @@ namespace Nos3
         /* Internal state data */
         bip::mapped_region                                  _shm_region;
         struct blackboard_data {
+            bip::interprocess_mutex mutex;
             double svb[3];
             double bvb[3];
             double Hvb[3];
