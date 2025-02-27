@@ -156,9 +156,7 @@ namespace Nos3
             /* Debug print */
             sim_logger->trace("BlackboardDataPoint::BlackboardDataPoint:  Parsed point = ");
         } catch (const std::exception &e) {
-            if (get_lines().size() > 0) {
-                sim_logger->error("BlackboardDataPoint::BlackboardDataPoint:  Error parsing point.  Error=%s.  Data=%s", e.what(), to_string().c_str());
-            }
+            sim_logger->error("BlackboardDataPoint::BlackboardDataPoint:  Error parsing point.  Error=%s.  Data=%s", e.what(), to_string().c_str());
         }
     }
 
