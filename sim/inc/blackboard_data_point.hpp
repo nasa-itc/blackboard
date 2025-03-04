@@ -41,7 +41,7 @@ namespace Nos3
         double get_CSSIllum_5(void) {parse_data_point(); return _CSSIllum[5];}
         double get_FSSValid(void) {parse_data_point(); return _FSSValid;}
         double get_FSSSunAng_alpha(void) {parse_data_point(); return _FSSSunAng[0];}
-        double get_FSSSunAng_beta(void) {parse_data_point(); return _FSSSunAng[0];}
+        double get_FSSSunAng_beta(void) {parse_data_point(); return _FSSSunAng[1];}
         double get_STValid(void) {parse_data_point(); return _STValid;}
         double get_STqn_0(void) {parse_data_point(); return _STqn[0];}
         double get_STqn_1(void) {parse_data_point(); return _STqn[1];}
