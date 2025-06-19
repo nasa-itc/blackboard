@@ -47,69 +47,69 @@ namespace Nos3
             _Hvb[2] = data[2];
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Gyro[0].Rate"); // SC[N].AC.Gyro[0].Rate
+            key.append("SC[").append(std::to_string(_sc)).append("].Gyro[0].TrueRate"); // SC[N].Gyro[0].TrueRate
             _GyroRate[0] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Gyro[1].Rate"); // SC[N].AC.Gyro[1].Rate
+            key.append("SC[").append(std::to_string(_sc)).append("].Gyro[1].TrueRate"); // SC[N].Gyro[1].TrueRate
             _GyroRate[1] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Gyro[2].Rate"); // SC[N].AC.Gyro[2].Rate
+            key.append("SC[").append(std::to_string(_sc)).append("].Gyro[2].TrueRate"); // SC[N].Gyro[2].TrueRate
             _GyroRate[2] = std::stof(_dp.get_value_for_key(key));
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[0].Valid"); // SC[N].AC.CSS[0].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[0].Valid"); // SC[N].CSS[0].Valid
             _CSSValid[0] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[1].Valid"); // SC[N].AC.CSS[1].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[1].Valid"); // SC[N].CSS[1].Valid
             _CSSValid[1] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[2].Valid"); // SC[N].AC.CSS[2].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[2].Valid"); // SC[N].CSS[2].Valid
             _CSSValid[2] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[3].Valid"); // SC[N].AC.CSS[3].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[3].Valid"); // SC[N].CSS[3].Valid
             _CSSValid[3] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[4].Valid"); // SC[N].AC.CSS[4].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[4].Valid"); // SC[N].CSS[4].Valid
             _CSSValid[4] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[5].Valid"); // SC[N].AC.CSS[5].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[5].Valid"); // SC[N].CSS[5].Valid
             _CSSValid[5] = std::stof(_dp.get_value_for_key(key));
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[0].Illum"); // SC[N].AC.CSS[0].Illum
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[0].Illum"); // SC[N].CSS[0].Illum
             _CSSIllum[0] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[1].Illum"); // SC[N].AC.CSS[1].Illum
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[1].Illum"); // SC[N].CSS[1].Illum
             _CSSIllum[1] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[2].Illum"); // SC[N].AC.CSS[2].Illum
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[2].Illum"); // SC[N].CSS[2].Illum
             _CSSIllum[2] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[3].Illum"); // SC[N].AC.CSS[3].Illum
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[3].Illum"); // SC[N].CSS[3].Illum
             _CSSIllum[3] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[4].Illum"); // SC[N].AC.CSS[4].Illum
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[4].Illum"); // SC[N].CSS[4].Illum
             _CSSIllum[4] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.CSS[5].Illum"); // SC[N].AC.CSS[5].Illum
+            key.append("SC[").append(std::to_string(_sc)).append("].CSS[5].Illum"); // SC[N].CSS[5].Illum
             _CSSIllum[5] = std::stof(_dp.get_value_for_key(key));
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.FSS[0].Valid"); // SC[N].AC.FSS[0].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].FSS[0].Valid"); // SC[N].FSS[0].Valid
             _FSSValid = std::stof(_dp.get_value_for_key(key));
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.FSS[0].SunAng"); // SC[N].AC.FSS[0].SunAng
+            key.append("SC[").append(std::to_string(_sc)).append("].FSS[0].SunAng"); // SC[N].FSS[0].SunAng
             parse_double_vector(_dp.get_value_for_key(key), data);
             _FSSSunAng[0] = data[0];
             _FSSSunAng[1] = data[1];
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.ST[0].Valid"); // SC[N].AC.ST[0].Valid
+            key.append("SC[").append(std::to_string(_sc)).append("].ST[0].Valid"); // SC[N].ST[0].Valid
             _STValid = std::stof(_dp.get_value_for_key(key));
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.ST[0].qn"); // SC[N].AC.ST[0].qn
+            key.append("SC[").append(std::to_string(_sc)).append("].ST[0].qn"); // SC[N].ST[0].qn
             parse_double_vector(_dp.get_value_for_key(key), data);
             _STqn[0] = data[0];
             _STqn[1] = data[1];
@@ -117,37 +117,37 @@ namespace Nos3
             _STqn[3] = data[3];
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.GPS[0].PosN"); // SC[N].AC.GPS[0].PosN
+            key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].PosN"); // SC[N].GPS[0].PosN
             parse_double_vector(_dp.get_value_for_key(key), data);
             _GPSPosN[0] = data[0];
             _GPSPosN[1] = data[1];
             _GPSPosN[2] = data[2];
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.GPS[0].VelN"); // SC[N].AC.GPS[0].VelN
+            key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].VelN"); // SC[N].GPS[0].VelN
             parse_double_vector(_dp.get_value_for_key(key), data);
             _GPSVelN[0] = data[0];
             _GPSVelN[1] = data[1];
             _GPSVelN[2] = data[2];
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Accel[0].Acc"); // SC[N].AC.Accel[0].Acc
+            key.append("SC[").append(std::to_string(_sc)).append("].Accel[0].TrueAcc"); // SC[N].Accel[0].TrueAcc
             _AccelAcc[0] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Accel[1].Acc"); // SC[N].AC.Accel[1].Acc
+            key.append("SC[").append(std::to_string(_sc)).append("].Accel[1].TrueAcc"); // SC[N].Accel[1].TrueAcc
             _AccelAcc[1] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Accel[2].Acc"); // SC[N].AC.Accel[2].Acc
+            key.append("SC[").append(std::to_string(_sc)).append("].Accel[2].TrueAcc"); // SC[N].Accel[2].TrueAcc
             _AccelAcc[2] = std::stof(_dp.get_value_for_key(key));
 
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Whl[0].H"); // SC[N].AC.Whl[0].H
+            key.append("SC[").append(std::to_string(_sc)).append("].Whl[0].H"); // SC[N].Whl[0].H
             _WhlH[0] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Whl[1].H"); // SC[N].AC.Whl[1].H
+            key.append("SC[").append(std::to_string(_sc)).append("].Whl[1].H"); // SC[N].Whl[1].H
             _WhlH[1] = std::stof(_dp.get_value_for_key(key));
             key = "";
-            key.append("SC[").append(std::to_string(_sc)).append("].AC.Whl[2].H"); // SC[N].AC.Whl[2].H
+            key.append("SC[").append(std::to_string(_sc)).append("].Whl[2].H"); // SC[N].Whl[2].H
             _WhlH[2] = std::stof(_dp.get_value_for_key(key));
 
 
