@@ -109,6 +109,13 @@ namespace Nos3
             bip::scoped_lock<bip::interprocess_mutex> lock(_blackboard_data->mutex);
             const boost::shared_ptr<BlackboardDataPoint> data_point =
                 boost::dynamic_pointer_cast<BlackboardDataPoint>(_blackboard_dp->get_data_point());
+            _blackboard_data->qn[0]        = data_point->get_qn_0();
+            _blackboard_data->qn[1]        = data_point->get_qn_1();
+            _blackboard_data->qn[2]        = data_point->get_qn_2();
+            _blackboard_data->qn[3]        = data_point->get_qn_3();
+            _blackboard_data->wn[0]        = data_point->get_wn_x();
+            _blackboard_data->wn[2]        = data_point->get_wn_y();
+            _blackboard_data->wn[1]        = data_point->get_wn_z();
             _blackboard_data->svb[0]       = data_point->get_svb_x();
             _blackboard_data->svb[1]       = data_point->get_svb_y();
             _blackboard_data->svb[2]       = data_point->get_svb_z();
@@ -118,9 +125,15 @@ namespace Nos3
             _blackboard_data->Hvb[0]       = data_point->get_Hvb_x();
             _blackboard_data->Hvb[1]       = data_point->get_Hvb_y();
             _blackboard_data->Hvb[2]       = data_point->get_Hvb_z();
+            _blackboard_data->WhlH[0]      = data_point->get_WhlH_x();
+            _blackboard_data->WhlH[1]      = data_point->get_WhlH_y();
+            _blackboard_data->WhlH[2]      = data_point->get_WhlH_z();
             _blackboard_data->GyroRate[0]  = data_point->get_GyroRate_x();
             _blackboard_data->GyroRate[1]  = data_point->get_GyroRate_y();
             _blackboard_data->GyroRate[2]  = data_point->get_GyroRate_z();
+            _blackboard_data->MagField[0]  = data_point->get_MagField_x();
+            _blackboard_data->MagField[1]  = data_point->get_MagField_y();
+            _blackboard_data->MagField[2]  = data_point->get_MagField_z();
             _blackboard_data->CSSValid[0]  = data_point->get_CSSValid_0();
             _blackboard_data->CSSValid[1]  = data_point->get_CSSValid_1();
             _blackboard_data->CSSValid[2]  = data_point->get_CSSValid_2();
@@ -141,18 +154,28 @@ namespace Nos3
             _blackboard_data->STqn[1]      = data_point->get_STqn_1();
             _blackboard_data->STqn[2]      = data_point->get_STqn_2();
             _blackboard_data->STqn[3]      = data_point->get_STqn_3();
+            _blackboard_data->GPSValid     = data_point->get_GPSValid();
+            _blackboard_data->GPSRollover  = data_point->get_GPSRollover();
+            _blackboard_data->GPSWeek      = data_point->get_GPSWeek();
+            _blackboard_data->GPSSec       = data_point->get_GPSSec();
             _blackboard_data->GPSPosN[0]   = data_point->get_GPSPosN_x();
             _blackboard_data->GPSPosN[1]   = data_point->get_GPSPosN_y();
             _blackboard_data->GPSPosN[2]   = data_point->get_GPSPosN_z();
             _blackboard_data->GPSVelN[0]   = data_point->get_GPSVelN_x();
             _blackboard_data->GPSVelN[1]   = data_point->get_GPSVelN_y();
             _blackboard_data->GPSVelN[2]   = data_point->get_GPSVelN_z();
+            _blackboard_data->GPSPosW[0]   = data_point->get_GPSPosW_x();
+            _blackboard_data->GPSPosW[1]   = data_point->get_GPSPosW_y();
+            _blackboard_data->GPSPosW[2]   = data_point->get_GPSPosW_z();
+            _blackboard_data->GPSVelW[0]   = data_point->get_GPSVelW_x();
+            _blackboard_data->GPSVelW[1]   = data_point->get_GPSVelW_y();
+            _blackboard_data->GPSVelW[2]   = data_point->get_GPSVelW_z();
+            _blackboard_data->GPSLng       = data_point->get_GPSLng();
+            _blackboard_data->GPSLat       = data_point->get_GPSLat();
+            _blackboard_data->GPSAlt       = data_point->get_GPSAlt();
             _blackboard_data->AccelAcc[0]  = data_point->get_AccelAcc_x();
             _blackboard_data->AccelAcc[1]  = data_point->get_AccelAcc_y();
             _blackboard_data->AccelAcc[2]  = data_point->get_AccelAcc_z();
-            _blackboard_data->WhlH[0]      = data_point->get_WhlH_x();
-            _blackboard_data->WhlH[1]      = data_point->get_WhlH_y();
-            _blackboard_data->WhlH[2]      = data_point->get_WhlH_z();
         }
     }
 
