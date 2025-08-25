@@ -1,3 +1,4 @@
+#include <boost/thread.hpp>
 #include <blackboard_hardware_model.hpp>
 
 namespace Nos3
@@ -105,7 +106,7 @@ namespace Nos3
     void BlackboardHardwareModel::send_periodic_data_to_shmem(NosEngine::Common::SimTime time)
     {
         if ((time > _ticks_to_wait_at_startup) && ((time % _ticks_between_shmem_saves) == 0)) {
-            bip::scoped_lock<bip::interprocess_mutex> lock(_blackboard_data->mutex);
+            boost::shared_lock<boost::shared_mutex> lock(_blackboard_data->mutex);
             const boost::shared_ptr<BlackboardDataPoint> data_point =
                 boost::dynamic_pointer_cast<BlackboardDataPoint>(_blackboard_dp->get_data_point());
             _blackboard_data->svb[0]       = data_point->get_svb_x();
