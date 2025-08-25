@@ -43,9 +43,9 @@ namespace Nos3
         _time_bus->add_time_tick_callback(std::bind(&BlackboardHardwareModel::send_periodic_data_to_shmem, this, std::placeholders::_1));
         sim_logger->info("BlackboardHardwareModel::BlackboardHardwareModel:  Now on time bus named %s.", time_bus_name.c_str());
 
-        const std::string shm_name = config.get("simulator.hardware-model.shared-memory-name", "Blackboard");
+        _shm_name = config.get("simulator.hardware-model.shared-memory-name", "Blackboard");
         const size_t shm_size = sizeof(BlackboardData);
-        bip::shared_memory_object shm(bip::open_or_create, shm_name.c_str(), bip::read_write);
+        bip::shared_memory_object shm(bip::open_or_create, _shm_name.c_str(), bip::read_write);
         shm.truncate(shm_size);
         bip::mapped_region shm_region(shm, bip::read_write);
         _shm_region = std::move(shm_region); // don't let this go out of scope/get destroyed
@@ -58,6 +58,7 @@ namespace Nos3
 
     BlackboardHardwareModel::~BlackboardHardwareModel(void)
     {        
+        bip::shared_memory_object::remove(_shm_name.c_str());
         /* Clean up the data provider */
         delete _blackboard_dp;
         _blackboard_dp = nullptr;

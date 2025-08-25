@@ -52,6 +52,7 @@ namespace Nos3
         SimIDataProvider*                                   _blackboard_dp; /* Only needed if the sim has a data provider */
 
         /* Internal state data */
+        std::string                                         _shm_name;
         bip::mapped_region                                  _shm_region;
         BlackboardData*                                     _blackboard_data;
         std::uint16_t                                       _ticks_between_shmem_saves;
