@@ -116,6 +116,18 @@ namespace Nos3
             _STqn[2] = data[2];
             _STqn[3] = data[3];
 
+            _AbsTime = std::stod(_dp.get_value_for_key("ABSTIME"));
+
+            key = "";
+            key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].Week"); // SC[N].GPS[0].Week
+            _GPSWeek = std::stof(_dp.get_value_for_key(key));
+
+            key = "";
+            key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].Sec"); // SC[N].GPS[0].GPSSec
+            float seconds = std::stof(_dp.get_value_for_key(key));
+            _GPSSec = seconds;
+            _GPSFracSec = seconds - _GPSSec;
+
             key = "";
             key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].PosN"); // SC[N].GPS[0].PosN
             parse_double_vector(_dp.get_value_for_key(key), data);
@@ -129,6 +141,20 @@ namespace Nos3
             _GPSVelN[0] = data[0];
             _GPSVelN[1] = data[1];
             _GPSVelN[2] = data[2];
+
+            key = "";
+            key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].PosW"); // SC[N].GPS[0].PosW
+            parse_double_vector(_dp.get_value_for_key(key), data);
+            _GPSPosW[0] = data[0];
+            _GPSPosW[1] = data[1];
+            _GPSPosW[2] = data[2];
+
+            key = "";
+            key.append("SC[").append(std::to_string(_sc)).append("].GPS[0].VelW"); // SC[N].GPS[0].VelW
+            parse_double_vector(_dp.get_value_for_key(key), data);
+            _GPSVelW[0] = data[0];
+            _GPSVelW[1] = data[1];
+            _GPSVelW[2] = data[2];
 
             key = "";
             key.append("SC[").append(std::to_string(_sc)).append("].Accel[0].TrueAcc"); // SC[N].Accel[0].TrueAcc

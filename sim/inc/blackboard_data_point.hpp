@@ -27,32 +27,42 @@ namespace Nos3
         double get_GyroRate_x(void) {parse_data_point(); return _GyroRate[0];}
         double get_GyroRate_y(void) {parse_data_point(); return _GyroRate[1];}
         double get_GyroRate_z(void) {parse_data_point(); return _GyroRate[2];}
-        double get_CSSValid_0(void) {parse_data_point(); return _CSSValid[0];}
-        double get_CSSValid_1(void) {parse_data_point(); return _CSSValid[1];}
-        double get_CSSValid_2(void) {parse_data_point(); return _CSSValid[2];}
-        double get_CSSValid_3(void) {parse_data_point(); return _CSSValid[3];}
-        double get_CSSValid_4(void) {parse_data_point(); return _CSSValid[4];}
-        double get_CSSValid_5(void) {parse_data_point(); return _CSSValid[5];}
+        int    get_CSSValid_0(void) {parse_data_point(); return _CSSValid[0];}
+        int    get_CSSValid_1(void) {parse_data_point(); return _CSSValid[1];}
+        int    get_CSSValid_2(void) {parse_data_point(); return _CSSValid[2];}
+        int    get_CSSValid_3(void) {parse_data_point(); return _CSSValid[3];}
+        int    get_CSSValid_4(void) {parse_data_point(); return _CSSValid[4];}
+        int    get_CSSValid_5(void) {parse_data_point(); return _CSSValid[5];}
         double get_CSSIllum_0(void) {parse_data_point(); return _CSSIllum[0];}
         double get_CSSIllum_1(void) {parse_data_point(); return _CSSIllum[1];}
         double get_CSSIllum_2(void) {parse_data_point(); return _CSSIllum[2];}
         double get_CSSIllum_3(void) {parse_data_point(); return _CSSIllum[3];}
         double get_CSSIllum_4(void) {parse_data_point(); return _CSSIllum[4];}
         double get_CSSIllum_5(void) {parse_data_point(); return _CSSIllum[5];}
-        double get_FSSValid(void) {parse_data_point(); return _FSSValid;}
+        int    get_FSSValid(void) {parse_data_point(); return _FSSValid;}
         double get_FSSSunAng_alpha(void) {parse_data_point(); return _FSSSunAng[0];}
         double get_FSSSunAng_beta(void) {parse_data_point(); return _FSSSunAng[1];}
-        double get_STValid(void) {parse_data_point(); return _STValid;}
+        int    get_STValid(void) {parse_data_point(); return _STValid;}
         double get_STqn_0(void) {parse_data_point(); return _STqn[0];}
         double get_STqn_1(void) {parse_data_point(); return _STqn[1];}
         double get_STqn_2(void) {parse_data_point(); return _STqn[2];}
         double get_STqn_3(void) {parse_data_point(); return _STqn[3];}
+        double get_AbsTime(void) {parse_data_point(); return _AbsTime;}
+        int    get_GPSWeek(void) {parse_data_point(); return _GPSWeek;}
+        int    get_GPSSec(void) {parse_data_point(); return _GPSSec;}
+        double get_GPSFracSec(void) {parse_data_point(); return _GPSFracSec;}
         double get_GPSPosN_x(void) {parse_data_point(); return _GPSPosN[0];}
         double get_GPSPosN_y(void) {parse_data_point(); return _GPSPosN[1];}
         double get_GPSPosN_z(void) {parse_data_point(); return _GPSPosN[2];}
         double get_GPSVelN_x(void) {parse_data_point(); return _GPSVelN[0];}
         double get_GPSVelN_y(void) {parse_data_point(); return _GPSVelN[1];}
         double get_GPSVelN_z(void) {parse_data_point(); return _GPSVelN[2];}
+        double get_GPSPosW_x(void) {parse_data_point(); return _GPSPosW[0];}
+        double get_GPSPosW_y(void) {parse_data_point(); return _GPSPosW[1];}
+        double get_GPSPosW_z(void) {parse_data_point(); return _GPSPosW[2];}
+        double get_GPSVelW_x(void) {parse_data_point(); return _GPSVelW[0];}
+        double get_GPSVelW_y(void) {parse_data_point(); return _GPSVelW[1];}
+        double get_GPSVelW_z(void) {parse_data_point(); return _GPSVelW[2];}
         double get_AccelAcc_x(void) {parse_data_point(); return _AccelAcc[0];}
         double get_AccelAcc_y(void) {parse_data_point(); return _AccelAcc[1];}
         double get_AccelAcc_z(void) {parse_data_point(); return _AccelAcc[2];}
@@ -88,8 +98,14 @@ namespace Nos3
         mutable double _FSSSunAng[2];
         mutable int    _STValid;
         mutable double _STqn[4];
+        mutable double _AbsTime;
+        mutable int    _GPSWeek;
+        mutable int    _GPSSec;
+        mutable double _GPSFracSec;
         mutable double _GPSPosN[3];
         mutable double _GPSVelN[3];
+        mutable double _GPSPosW[3];
+        mutable double _GPSVelW[3];
         mutable double _AccelAcc[3];
         mutable double _WhlH[3];
     };
